@@ -1,31 +1,32 @@
+#endif
 #ifndef VEHICULO_H
 #define VEHICULO_H
 
 #include <string>
 #include <memory>
-
 using namespace std;
-
 class Vehiculo {
 protected:
     string placa;
-    double horasPlanificadas;
-    
+    double horas;
+
 public:
-    Vehiculo(const string& placa, double horas);
-    virtual ~Vehiculo() = default;
-    
-    string getPlaca() const;
-    double getHorasPlanificadas() const;
-    
+    Vehiculo(const string& placa, double horas) : placa(placa), horas(horas) {}
+
     virtual double calcularTarifaBase() const = 0;
     virtual double calcularTarifaExtra() const = 0;
+    virtual double getHorasPlanificadas() const = 0;
     virtual bool validarPlaca(const string& placa) const = 0;
     virtual int getTipo() const = 0;
-    
-    double calcularPrecioPlanificado() const {
-        return calcularTarifaBase() * horasPlanificadas;
-    }
+
+    string getPlaca() const { return placa; }
+    double getHoras() const { return horas; }
+
+    virtual ~Vehiculo() {}
 };
 
 #endif
+
+
+
+
